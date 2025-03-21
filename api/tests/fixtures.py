@@ -91,13 +91,13 @@ def create_test_bill(
     for n in range(sources):
         yield BillSource(bill=b, url="https://example.com/source", note="")
     for n in range(versions):
-        bv = BillVersion(bill=b, note=f"Version {n}", date="2020")
+        bv = BillVersion(bill=b, note=f"Version {n}", date="2020", classification="")
         yield bv
         yield BillVersionLink(
             version=bv, url=f"https://example.com/{n}", media_type="text/html"
         )
     for n in range(documents):
-        bd = BillDocument(bill=b, note=f"Version {n}", date="2020")
+        bd = BillDocument(bill=b, note=f"Version {n}", date="2020", classification="")
         yield bd
         yield BillDocumentLink(
             document=bd, url=f"https://example.com/{n}", media_type="text/html"

@@ -161,12 +161,14 @@ class DocumentLinkBase(PrimaryUUID):
 class BillDocument(DocVerBase, Base):
     __tablename__ = "opencivicdata_billdocument"
 
+    classification = Column(String)
     links = relationship("BillDocumentLink", back_populates="document")
 
 
 class BillVersion(DocVerBase, Base):
     __tablename__ = "opencivicdata_billversion"
 
+    classification = Column(String)
     links = relationship("BillVersionLink", back_populates="version")
 
 

@@ -210,6 +210,7 @@ def test_bills_include_documents_versions(client):
             "note": "Version 0",
             "date": "2020",
             "links": [{"media_type": "text/html", "url": "https://example.com/0"}],
+            "classification": "",
         }
 
         for doc in b["documents"]:

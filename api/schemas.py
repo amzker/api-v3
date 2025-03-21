@@ -294,6 +294,7 @@ class BillDocumentOrVersion(BaseModel):
     id: UUID = Field(..., example="f0049138-1ad8-4506-a2a4-f4dd1251bbba")
     note: str = Field(..., example="Latest Version")
     date: str = Field(..., example="2020-10-01")
+    classification: str = Field(..., example="amendment")
     links: List[BillDocumentLink]
 
     class Config:
