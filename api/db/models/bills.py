@@ -167,6 +167,7 @@ class BillDocument(DocVerBase, Base):
 class BillVersion(DocVerBase, Base):
     __tablename__ = "opencivicdata_billversion"
 
+    classification = Column(String)
     links = relationship("BillVersionLink", back_populates="version")
 
 
