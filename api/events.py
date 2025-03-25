@@ -74,7 +74,7 @@ async def event_list(
         .filter(
             jurisdiction_filter(jurisdiction, jid_field=models.Event.jurisdiction_id),
         )
-        .order_by(models.Event.start_date)
+        .order_by(models.Event.start_date, models.Event.id)
     ).options(
         contains_eager(
             models.Event.jurisdiction,
