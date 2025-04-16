@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List  # , Optional
+from typing import List, Optional
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy import func
 from sqlalchemy.orm import contains_eager
@@ -44,7 +44,10 @@ class EventPagination(Pagination):
 )
 async def event_list(
     jurisdiction: str = Query(None, description="Filter by jurisdiction name or ID."),
-    deleted: bool = Query(False, description="Return events marked as deleted?"),
+    deleted: Optional[bool] = Query(
+        None,
+        description="filter by deleted status. if true only deleted events are returned, if false only non-deleted events are returned, if omitted all events are returned",
+    ),
     before: str = Query(
         None, description="Limit results to those starting before a given datetime."
     ),
@@ -85,7 +88,8 @@ async def event_list(
     )
 
     # handle parameters
-    query = query.filter(models.Event.deleted.is_(deleted))
+    if deleted is not None:
+        query = query.filter(models.Event.deleted.is_(deleted))
 
     if before:
         query = query.filter(models.Event.start_date < before)
